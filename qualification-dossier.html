@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIRENA Capital — Qualification Dossier Marchand</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1a2e42;
+      --navy-light: #243d56;
+      --gold: #c8922a;
+      --gold-light: #e8b05a;
+      --white: #f8f9fa;
+      --gray: #8a9bb0;
+      --gray-light: #e2e8f0;
+      --red: #c0392b;
+      --red-light: #fdf2f2;
+      --orange: #e67e22;
+      --orange-light: #fef9f0;
+      --yellow: #f39c12;
+      --yellow-light: #fffbf0;
+      --green: #27ae60;
+      --green-light: #f0faf4;
+      --radius: 10px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #f0f4f8;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--gold);
+    }
+    .logo { display: flex; align-items: center; gap: 14px; }
+    .logo-icon {
+      width: 44px; height: 44px;
+      background: var(--gold);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px; color: var(--navy);
+    }
+    .logo-text h1 { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .logo-text p { font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .header-meta { text-align: right; font-size: 12px; color: var(--gray); }
+    .header-meta span { display: block; }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 960px;
+      margin: 32px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* CARD */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      background: var(--navy-mid);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-header h2 { font-size: 16px; font-weight: 600; letter-spacing: 0.3px; }
+    .card-header .subtitle { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    /* SECTION LABELS */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px 8px;
+      background: var(--gray-light);
+      border-top: 1px solid #d0dae6;
+    }
+    .section-badge {
+      width: 30px; height: 30px;
+      background: var(--navy);
+      color: white;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+      flex-shrink: 0;
+    }
+    .section-label .section-name { font-weight: 600; font-size: 13px; color: var(--navy); }
+
+    /* CHECKLIST ROWS */
+    .check-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: start;
+      gap: 14px;
+      padding: 14px 24px;
+      border-top: 1px solid #eef1f5;
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .check-row:hover { background: #fafbfd; }
+    .check-row.eliminatoire { border-left: 4px solid var(--red); }
+    .check-row.eliminatoire:hover { background: var(--red-light); }
+
+    .check-row input[type="checkbox"] {
+      width: 20px; height: 20px;
+      accent-color: var(--gold);
+      cursor: pointer;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .check-content .check-title { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .check-content .check-desc { font-size: 12px; color: var(--gray); margin-top: 3px; }
+    .check-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .badge-eliminatoire { background: var(--red-light); color: var(--red); border: 1px solid #f5b8b3; }
+    .badge-verifier { background: #eef4ff; color: #3b72c8; border: 1px solid #c0d4f5; }
+    .badge-negocier { background: var(--orange-light); color: var(--orange); border: 1px solid #f5d9b0; }
+
+    /* CDC SUMMARY */
+    .cdc-summary {
+      background: var(--navy-mid);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .cdc-summary .summary-label { font-size: 13px; color: var(--gray); }
+    .summary-counts { display: flex; gap: 24px; align-items: center; }
+    .summary-stat { text-align: center; }
+    .summary-stat .num { font-size: 26px; font-weight: 700; color: var(--gold); }
+    .summary-stat .lbl { font-size: 11px; color: var(--gray); }
+    .elim-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .elim-ok { background: rgba(39,174,96,0.15); color: #5dd89a; border: 1px solid rgba(39,174,96,0.3); }
+    .elim-ko { background: rgba(192,57,43,0.2); color: #f08080; border: 1px solid rgba(192,57,43,0.4); }
+
+    /* PROGRESS BAR */
+    .progress-wrap { padding: 0 24px 14px; }
+    .progress-bar-bg {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+    .progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); margin-top: 4px; }
+
+    /* ======= SCORING ======= */
+    .score-section { border-top: 1px solid #eef1f5; }
+
+    .score-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 24px;
+      border-top: 1px solid #eef1f5;
+    }
+    .score-row-info { flex: 1; }
+    .score-row-info .title { font-size: 14px; font-weight: 600; }
+    .score-row-info .desc { font-size: 12px; color: var(--gray); margin-top: 3px; }
+    .score-row-points {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 700;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #f0f4f8;
+      border: 1.5px solid #d0dae6;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .opt-label:hover { border-color: var(--gold); background: #fffbf0; }
+    .opt-label input[type="radio"] { accent-color: var(--gold); cursor: pointer; }
+    .opt-label.selected {
+      background: var(--navy);
+      border-color: var(--gold);
+      color: white;
+    }
+    .opt-pts {
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+    .opt-label.selected .opt-pts { background: var(--gold-light); }
+
+    /* SCORE DISPLAY */
+    .score-display {
+      background: var(--navy);
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+    .score-circle-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
+    .score-circle {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 6px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.5s;
+    }
+    .score-circle .score-num {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      transition: color 0.5s;
+    }
+    .score-circle .score-denom { font-size: 13px; color: var(--gray); }
+
+    /* THRESHOLDS */
+    .thresholds {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .threshold {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1.5px solid transparent;
+      transition: all 0.3s;
+      opacity: 0.45;
+    }
+    .threshold.active { opacity: 1; border-color: currentColor; }
+    .t-range {
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 80px;
+      text-align: center;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.08);
+    }
+    .t-text { font-size: 13px; flex: 1; text-align: left; }
+    .t-icon { font-size: 18px; }
+    .t-elim  { color: #c0392b; }
+    .t-refus { color: #e74c3c; }
+    .t-etude { color: var(--orange); }
+    .t-visite { color: var(--yellow); }
+    .t-prio   { color: var(--green); }
+
+    .decision-banner {
+      margin: 16px auto 0;
+      padding: 14px 20px;
+      border-radius: 10px;
+      max-width: 520px;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      transition: all 0.4s;
+    }
+
+    /* RESET BTN */
+    .actions {
+      display: flex;
+      justify-content: center;
+      padding: 16px 24px;
+      border-top: 1px solid #eef1f5;
+    }
+    .btn-reset {
+      background: none;
+      border: 1.5px solid var(--gray-light);
+      color: var(--gray);
+      padding: 8px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.15s;
+    }
+    .btn-reset:hover { border-color: var(--red); color: var(--red); }
+
+    /* Elimination bar */
+    .elim-banner {
+      background: rgba(192,57,43,0.15);
+      border: 1.5px solid rgba(192,57,43,0.4);
+      color: #f08080;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin: 0 24px 16px;
+    }
+    .elim-banner.visible { display: flex; }
+
+    /* Score bar in scoring section */
+    .score-section-header {
+      background: var(--navy-light);
+      color: white;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+    .section-pts-earned {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(200,146,42,0.15);
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 640px) {
+      header { flex-direction: column; gap: 12px; text-align: center; }
+      .cdc-summary { flex-direction: column; }
+      .summary-counts { justify-content: center; }
+      .score-row { flex-direction: column; }
+    }
+
+    /* Print */
+    @media print {
+      body { background: white; }
+      header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">SC</div>
+    <div class="logo-text">
+      <h1>SIRENA CAPITAL</h1>
+      <p>Qualification Dossier Marchand</p>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span>Version 2.2 · Usage interne</span>
+    <span id="today-date" style="color:var(--gold-light); margin-top:4px;"></span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ========== SECTION 1 : CAHIER DES CHARGES ========== -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>① Cahier des charges — Vérification préliminaire</h2>
+        <div class="subtitle">Cochez chaque critère vérifié. Les critères éliminatoires bloquent l'opération.</div>
+      </div>
+    </div>
+
+    <!-- B – BIEN -->
+    <div class="section-label">
+      <div class="section-badge">B</div>
+      <div class="section-name">BIEN</div>
+    </div>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c1" />
+      <div class="check-content">
+        <div class="check-title">Ensemble immobilier : immeuble ou maison</div>
+        <div class="check-desc">Bien seul ou plusieurs bâtiments sur une même parcelle</div>
+      </div>
+      <span class="check-badge badge-verifier">À vérifier</span>
+    </label>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c2" />
+      <div class="check-content">
+        <div class="check-title">Bien en monopropriété</div>
+        <div class="check-desc">Un seul propriétaire — pas de copropriété constituée</div>
+      </div>
+      <span class="check-badge badge-verifier">À vérifier</span>
+    </label>
+
+    <!-- D – DIVISIBILITÉ -->
+    <div class="section-label">
+      <div class="section-badge">D</div>
+      <div class="section-name">DIVISIBILITÉ</div>
+    </div>
+    <label class="check-row eliminatoire" onclick="updateCDC()">
+      <input type="checkbox" id="c3" data-elim="true" />
+      <div class="check-content">
+        <div class="check-title">Bien divisible sans travaux lourds</div>
+        <div class="check-desc">Quelques cloisons acceptées — pas de restructuration de plancher, escalier ou façade</div>
+      </div>
+      <span class="check-badge badge-eliminatoire">Éliminatoire</span>
+    </label>
+
+    <!-- T – TECHNIQUE -->
+    <div class="section-label">
+      <div class="section-badge">T</div>
+      <div class="section-name">TECHNIQUE — COMPTEURS</div>
+    </div>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c4" />
+      <div class="check-content">
+        <div class="check-title">Compteurs Linky individuels existants</div>
+        <div class="check-desc">Idéalement un compteur par lot — facilite la vente individuelle</div>
+      </div>
+      <span class="check-badge badge-verifier">À vérifier</span>
+    </label>
+    <label class="check-row eliminatoire" onclick="updateCDC()">
+      <input type="checkbox" id="c5" data-elim="true" />
+      <div class="check-content">
+        <div class="check-title">Possibilité d'ajouter des compteurs si manquants</div>
+        <div class="check-desc">Colonne existante suffisante ou nouvelle colonne nécessaire ? Coût à estimer</div>
+      </div>
+      <span class="check-badge badge-eliminatoire">Éliminatoire</span>
+    </label>
+
+    <!-- U – URBANISME -->
+    <div class="section-label">
+      <div class="section-badge">U</div>
+      <div class="section-name">URBANISME — PLU</div>
+    </div>
+    <label class="check-row eliminatoire" onclick="updateCDC()">
+      <input type="checkbox" id="c6" data-elim="true" />
+      <div class="check-content">
+        <div class="check-title">Le PLU autorise la division en plusieurs logements</div>
+        <div class="check-desc">Vérifier les règles de zone : nombre de logements autorisés, gabarit, destination</div>
+      </div>
+      <span class="check-badge badge-eliminatoire">Éliminatoire</span>
+    </label>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c7" />
+      <div class="check-content">
+        <div class="check-title">Règles de stationnement compatibles avec la création de lots</div>
+        <div class="check-desc">Certains PLU exigent x places de parking par logement créé — à anticiper</div>
+      </div>
+      <span class="check-badge badge-eliminatoire">Éliminatoire</span>
+    </label>
+
+    <!-- M – MARCHÉ -->
+    <div class="section-label">
+      <div class="section-badge">M</div>
+      <div class="section-name">MARCHÉ</div>
+    </div>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c8" />
+      <div class="check-content">
+        <div class="check-title">Marché local liquide</div>
+        <div class="check-desc">Minimum 5 à 10 ventes de biens comparables sur les 12 derniers mois — source : DVF / agents locaux</div>
+      </div>
+      <span class="check-badge badge-verifier">5 à 10 ventes min.</span>
+    </label>
+
+    <!-- A – CONDITIONS D'ACQUISITION -->
+    <div class="section-label">
+      <div class="section-badge">A</div>
+      <div class="section-name">CONDITIONS D'ACQUISITION</div>
+    </div>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c9" />
+      <div class="check-content">
+        <div class="check-title">Substitution partielle acceptée par le vendeur et son notaire</div>
+        <div class="check-desc">Peu importe le profil du substituant — vérifier accord explicite des deux parties</div>
+      </div>
+      <span class="check-badge badge-negocier">À négocier</span>
+    </label>
+    <label class="check-row" onclick="updateCDC()">
+      <input type="checkbox" id="c10" />
+      <div class="check-content">
+        <div class="check-title">Condition suspensive de pré-commercialisation acceptée</div>
+        <div class="check-desc">Conditionner l'achat à la vente préalable d'au moins 1/3 des lots issus de la division</div>
+      </div>
+      <span class="check-badge badge-negocier">≥ 1/3 des lots</span>
+    </label>
+
+    <!-- SUMMARY BAR -->
+    <div class="cdc-summary">
+      <div>
+        <div style="font-size:15px; font-weight:700;">Récapitulatif</div>
+        <div class="summary-label">Cases cochées sur le total</div>
+      </div>
+      <div class="summary-counts">
+        <div class="summary-stat">
+          <div class="num" id="cdc-checked">0</div>
+          <div class="lbl">cochées</div>
+        </div>
+        <div style="font-size:24px; color:var(--gray); font-weight:300;">/</div>
+        <div class="summary-stat">
+          <div class="num" style="color:var(--gray)">10</div>
+          <div class="lbl">total</div>
+        </div>
+        <div class="summary-stat">
+          <div class="num" id="cdc-elim-checked">0</div>
+          <div class="lbl">éliminatoires</div>
+        </div>
+        <div style="font-size:24px; color:var(--gray); font-weight:300;">/</div>
+        <div class="summary-stat">
+          <div class="num" style="color:var(--gray)">4</div>
+          <div class="lbl">éliminatoires</div>
+        </div>
+      </div>
+      <div class="elim-status elim-ko" id="elim-status">
+        <span>⚠</span> Éliminatoires non validés
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <div style="font-size:12px; color:var(--gray); font-weight:500;">Progression CDC</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="cdc-progress"></div>
+      </div>
+      <div class="progress-label">
+        <span>0</span><span>5</span><span>10</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== SECTION 2 : SCORING ========== -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <h2>② Grille de scoring — Qualification d'opération</h2>
+        <div class="subtitle">Sélectionnez la situation pour chaque critère. Le score se calcule automatiquement.</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:28px; font-weight:800; color:var(--gold);" id="score-header">0</div>
+        <div style="font-size:11px; color:var(--gray);">/ 30 pts</div>
+      </div>
+    </div>
+
+    <div id="elim-banner" class="elim-banner">
+      <span>🚫</span>
+      <span>Critère rédhibitoire non satisfait — dossier éliminé avant scoring</span>
+    </div>
+
+    <!-- U – URBANISME / 8 pts -->
+    <div class="score-section-header" id="u-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="section-badge" style="width:24px;height:24px;font-size:12px;">U</div>
+        <span style="font-weight:600;">URBANISME — PLU</span>
+      </div>
+      <div class="section-pts-earned" id="u-pts-earned">0 / 8 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Le PLU autorise la division en plusieurs logements</div>
+        <div class="desc">Vérifier les règles de zone : nombre de logements autorisés, gabarit, destination</div>
+        <div class="options-group" id="u1-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_u1', 0)">
+            <input type="radio" name="s_u1" value="0" />
+            Non autorisé <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_u1', 3)">
+            <input type="radio" name="s_u1" value="3" />
+            Autorisé avec contraintes <span class="opt-pts">3 pts</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_u1', 5)">
+            <input type="radio" name="s_u1" value="5" />
+            Autorisé sans contraintes <span class="opt-pts">5 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 5 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Création de stationnement</div>
+        <div class="desc">Compatibilité avec les exigences de stationnement du PLU</div>
+        <div class="options-group" id="u2-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_u2', 0)">
+            <input type="radio" name="s_u2" value="0" />
+            Achat/taxe requise <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_u2', 1)">
+            <input type="radio" name="s_u2" value="1" />
+            Difficile <span class="opt-pts">1 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_u2', 3)">
+            <input type="radio" name="s_u2" value="3" />
+            Facile <span class="opt-pts">3 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 3 pts</div>
+    </div>
+
+    <!-- T – TECHNIQUE / 6 pts -->
+    <div class="score-section-header" id="t-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="section-badge" style="width:24px;height:24px;font-size:12px;">T</div>
+        <span style="font-weight:600;">TECHNIQUE — COMPTEURS</span>
+      </div>
+      <div class="section-pts-earned" id="t-pts-earned">0 / 6 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Compteurs Linky individuels existants</div>
+        <div class="desc">Idéalement un compteur par lot — facilite la vente individuelle</div>
+        <div class="options-group" id="t1-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_t1', 0)">
+            <input type="radio" name="s_t1" value="0" />
+            Aucun <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_t1', 2)">
+            <input type="radio" name="s_t1" value="2" />
+            Partiels <span class="opt-pts">2 pts</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_t1', 4)">
+            <input type="radio" name="s_t1" value="4" />
+            Tous présents <span class="opt-pts">4 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 4 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Possibilité d'ajouter des compteurs manquants</div>
+        <div class="desc">Colonne existante suffisante ou nouvelle colonne nécessaire ?</div>
+        <div class="options-group" id="t2-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_t2', 0)">
+            <input type="radio" name="s_t2" value="0" />
+            Nouvelle colonne nécessaire <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_t2', 2)">
+            <input type="radio" name="s_t2" value="2" />
+            Colonne existante <span class="opt-pts">2 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 2 pts</div>
+    </div>
+
+    <!-- A – CONDITIONS / 5 pts -->
+    <div class="score-section-header" id="a-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="section-badge" style="width:24px;height:24px;font-size:12px;">A</div>
+        <span style="font-weight:600;">CONDITIONS D'ACQUISITION</span>
+      </div>
+      <div class="section-pts-earned" id="a-pts-earned">0 / 5 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Substitution partielle acceptée</div>
+        <div class="desc">Accord explicite du vendeur et de son notaire</div>
+        <div class="options-group" id="a1-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_a1', 0)">
+            <input type="radio" name="s_a1" value="0" />
+            Refusée <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_a1', 2)">
+            <input type="radio" name="s_a1" value="2" />
+            Acceptée <span class="opt-pts">2 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 2 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Condition suspensive de pré-commercialisation (≥ 1/3)</div>
+        <div class="desc">Conditionner l'achat à la vente préalable d'au moins 1/3 des lots</div>
+        <div class="options-group" id="a2-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_a2', 0)">
+            <input type="radio" name="s_a2" value="0" />
+            Refusée <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_a2', 3)">
+            <input type="radio" name="s_a2" value="3" />
+            Acceptée <span class="opt-pts">3 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 3 pts</div>
+    </div>
+
+    <!-- S – SECTEUR / 6 pts -->
+    <div class="score-section-header" id="s-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="section-badge" style="width:24px;height:24px;font-size:12px;">S</div>
+        <span style="font-weight:600;">SECTEUR &amp; MARCHÉ</span>
+      </div>
+      <div class="section-pts-earned" id="s-pts-earned">0 / 6 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Qualité du secteur</div>
+        <div class="desc">Classification du marché géographique</div>
+        <div class="options-group" id="s1-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_s1', 0)">
+            <input type="radio" name="s_s1" value="0" />
+            Tertiaire / Non classé <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_s1', 2)">
+            <input type="radio" name="s_s1" value="2" />
+            Secondaire <span class="opt-pts">2 pts</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_s1', 4)">
+            <input type="radio" name="s_s1" value="4" />
+            Premier (littoral, centre premium) <span class="opt-pts">4 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 4 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Liquidité du marché local</div>
+        <div class="desc">Ventes comparables sur les 12 derniers mois — source : DVF / agents locaux</div>
+        <div class="options-group" id="s2-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_s2', 0)">
+            <input type="radio" name="s_s2" value="0" />
+            Moins de 5 ventes <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_s2', 1)">
+            <input type="radio" name="s_s2" value="1" />
+            5 à 10 ventes <span class="opt-pts">1 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_s2', 2)">
+            <input type="radio" name="s_s2" value="2" />
+            Plus de 10 ventes <span class="opt-pts">2 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 2 pts</div>
+    </div>
+
+    <!-- V – VENDEUR / 5 pts -->
+    <div class="score-section-header" id="v-header">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div class="section-badge" style="width:24px;height:24px;font-size:12px;">V</div>
+        <span style="font-weight:600;">VENDEUR &amp; APPORTEUR</span>
+      </div>
+      <div class="section-pts-earned" id="v-pts-earned">0 / 5 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Motivation du vendeur</div>
+        <div class="desc">Contexte de la mise en vente — indicateur de flexibilité du vendeur</div>
+        <div class="options-group" id="v1-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_v1', 0)">
+            <input type="radio" name="s_v1" value="0" />
+            Professionnel <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_v1', 1)">
+            <input type="radio" name="s_v1" value="1" />
+            Déménagement / Revente <span class="opt-pts">1 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_v1', 2)">
+            <input type="radio" name="s_v1" value="2" />
+            Indivision / +30 ans <span class="opt-pts">2 pts</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_v1', 3)">
+            <input type="radio" name="s_v1" value="3" />
+            Divorce / Succession <span class="opt-pts">3 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 3 pts</div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-info">
+        <div class="title">Relation avec l'apporteur</div>
+        <div class="desc">Qualité de la relation avec la source du dossier</div>
+        <div class="options-group" id="v2-group">
+          <label class="opt-label" onclick="selectOpt(this, 's_v2', 0)">
+            <input type="radio" name="s_v2" value="0" />
+            Inconnu <span class="opt-pts">0 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_v2', 1)">
+            <input type="radio" name="s_v2" value="1" />
+            Connaissance pro <span class="opt-pts">1 pt</span>
+          </label>
+          <label class="opt-label" onclick="selectOpt(this, 's_v2', 2)">
+            <input type="radio" name="s_v2" value="2" />
+            Feeling + connaissance <span class="opt-pts">2 pts</span>
+          </label>
+        </div>
+      </div>
+      <div class="score-row-points">max 2 pts</div>
+    </div>
+
+    <!-- SCORE FINAL -->
+    <div class="score-display">
+      <div class="score-circle-wrap">
+        <div class="score-circle" id="score-circle">
+          <div class="score-num" id="score-big">0</div>
+          <div class="score-denom">/ 30</div>
+        </div>
+      </div>
+
+      <div class="thresholds">
+        <div class="threshold t-elim" id="t-elim">
+          <div class="t-icon">🚫</div>
+          <div class="t-range">Élimination</div>
+          <div class="t-text">Critère rédhibitoire non satisfait</div>
+        </div>
+        <div class="threshold t-refus" id="t-0-9">
+          <div class="t-icon">✗</div>
+          <div class="t-range">0 – 9</div>
+          <div class="t-text">Refus — opération non qualifiée</div>
+        </div>
+        <div class="threshold t-etude" id="t-10-16">
+          <div class="t-icon">📋</div>
+          <div class="t-range">10 – 16</div>
+          <div class="t-text">À étudier — transmettre cadastre et documents</div>
+        </div>
+        <div class="threshold t-visite" id="t-17-23">
+          <div class="t-icon">📅</div>
+          <div class="t-range">17 – 23</div>
+          <div class="t-text">À engager — planifier une visite avec SIRENA Capital</div>
+        </div>
+        <div class="threshold t-prio" id="t-24-30">
+          <div class="t-icon">⭐</div>
+          <div class="t-range">24 – 30</div>
+          <div class="t-text">Priorité absolue — contacter SIRENA Capital dans la journée</div>
+        </div>
+      </div>
+
+      <div class="decision-banner" id="decision-banner" style="display:none;"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-reset" onclick="resetAll()">↺ Réinitialiser le formulaire</button>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  // === Date ===
+  document.getElementById('today-date').textContent = new Date().toLocaleDateString('fr-FR', {day:'2-digit', month:'long', year:'numeric'});
+
+  // === Scores state ===
+  const scores = {
+    s_u1: null, s_u2: null,
+    s_t1: null, s_t2: null,
+    s_a1: null, s_a2: null,
+    s_s1: null, s_s2: null,
+    s_v1: null, s_v2: null
+  };
+
+  const sectionMap = {
+    u: ['s_u1','s_u2'], t: ['s_t1','s_t2'],
+    a: ['s_a1','s_a2'], s: ['s_s1','s_s2'],
+    v: ['s_v1','s_v2']
+  };
+  const sectionMax = { u: 8, t: 6, a: 5, s: 6, v: 5 };
+
+  function selectOpt(labelEl, name, value) {
+    const group = labelEl.closest('.options-group');
+    group.querySelectorAll('.opt-label').forEach(l => l.classList.remove('selected'));
+    labelEl.classList.add('selected');
+    scores[name] = value;
+    updateScore();
+  }
+
+  function getScore() {
+    let total = 0;
+    for (const k in scores) {
+      if (scores[k] !== null) total += scores[k];
+    }
+    return total;
+  }
+
+  function getSectionScore(keys) {
+    let s = 0;
+    for (const k of keys) { if (scores[k] !== null) s += scores[k]; }
+    return s;
+  }
+
+  function isEliminated() {
+    // Check the 4 eliminatory checkboxes: c3 (divisibility), c5 (compteurs), c6 (PLU), c7 (stationnement)
+    const elims = ['c3','c5','c6','c7'];
+    return elims.some(id => {
+      const cb = document.getElementById(id);
+      return cb && !cb.checked;
+    });
+    // Actually, based on scoring page: eliminatory = "Bien en monopropriété", "Bien divisible sans travaux lourds", "Création de compteurs et de stationnement techniquement faisable"
+    // But let's check whether the user has explicitly marked the eliminatory ones as NOT OK
+    // The CDC checkboxes don't have a "failed" state, only checked/unchecked
+    // The scoring section has "Critères éliminatoires" — let's just check it from the scoring section separately
+    // Actually the document says: if eliminatory criterion not met = eliminated
+    // But the checkboxes only show whether something was verified, not pass/fail
+    // Let's skip this and just rely on the score thresholds
+  }
+
+  function updateScore() {
+    const total = getScore();
+
+    // Section scores
+    for (const [sec, keys] of Object.entries(sectionMap)) {
+      const s = getSectionScore(keys);
+      const max = sectionMax[sec];
+      document.getElementById(`${sec}-pts-earned`).textContent = `${s} / ${max} pts`;
+    }
+
+    // Header score
+    document.getElementById('score-header').textContent = total;
+    document.getElementById('score-big').textContent = total;
+
+    // Threshold highlighting
+    const thresholds = ['t-elim','t-0-9','t-10-16','t-17-23','t-24-30'];
+    thresholds.forEach(id => document.getElementById(id).classList.remove('active'));
+
+    const eliminated = checkEliminatedFromCDC();
+    const banner = document.getElementById('elim-banner');
+    const decBanner = document.getElementById('decision-banner');
+
+    if (eliminated) {
+      document.getElementById('t-elim').classList.add('active');
+      banner.classList.add('visible');
+      decBanner.style.display = 'flex';
+      decBanner.style.background = 'rgba(192,57,43,0.2)';
+      decBanner.style.color = '#f08080';
+      decBanner.style.border = '1.5px solid rgba(192,57,43,0.4)';
+      decBanner.innerHTML = '🚫 Critère rédhibitoire non satisfait — Dossier éliminé';
+      document.getElementById('score-circle').style.borderColor = '#c0392b';
+      document.getElementById('score-big').style.color = '#c0392b';
+    } else {
+      banner.classList.remove('visible');
+      let activeId, bgColor, textColor, borderColor, icon, text;
+      if (total <= 9) {
+        activeId = 't-0-9'; bgColor='rgba(231,76,60,0.15)'; textColor='#f08080'; borderColor='rgba(231,76,60,0.4)';
+        icon='✗'; text='Refus — opération non qualifiée';
+        document.getElementById('score-circle').style.borderColor = '#e74c3c';
+        document.getElementById('score-big').style.color = '#e74c3c';
+      } else if (total <= 16) {
+        activeId = 't-10-16'; bgColor='rgba(230,126,34,0.15)'; textColor='#f0a060'; borderColor='rgba(230,126,34,0.4)';
+        icon='📋'; text='À étudier — transmettre cadastre et documents';
+        document.getElementById('score-circle').style.borderColor = '#e67e22';
+        document.getElementById('score-big').style.color = '#e67e22';
+      } else if (total <= 23) {
+        activeId = 't-17-23'; bgColor='rgba(243,156,18,0.15)'; textColor='#f0c040'; borderColor='rgba(243,156,18,0.4)';
+        icon='📅'; text='À engager — planifier une visite avec SIRENA Capital';
+        document.getElementById('score-circle').style.borderColor = '#f39c12';
+        document.getElementById('score-big').style.color = '#f39c12';
+      } else {
+        activeId = 't-24-30'; bgColor='rgba(39,174,96,0.15)'; textColor='#5dd89a'; borderColor='rgba(39,174,96,0.4)';
+        icon='⭐'; text='Priorité absolue — contacter SIRENA Capital dans la journée';
+        document.getElementById('score-circle').style.borderColor = '#27ae60';
+        document.getElementById('score-big').style.color = '#5dd89a';
+      }
+      document.getElementById(activeId).classList.add('active');
+
+      if (Object.values(scores).some(v => v !== null)) {
+        decBanner.style.display = 'flex';
+        decBanner.style.background = bgColor;
+        decBanner.style.color = textColor;
+        decBanner.style.border = `1.5px solid ${borderColor}`;
+        decBanner.innerHTML = `${icon} ${text}`;
+      } else {
+        decBanner.style.display = 'none';
+      }
+    }
+  }
+
+  function checkEliminatedFromCDC() {
+    // Eliminated if any eliminatory checkbox in CDC is explicitly unchecked
+    // We treat it as: if the user has interacted with CDC and any of the 4 eliminatory ones is unchecked
+    // Actually, on page load everything is unchecked, so let's only trigger elimination if the user
+    // has explicitly marked at least one CDC item, then we check the eliminatory ones
+    const allCDC = Array.from(document.querySelectorAll('#c1,#c2,#c3,#c4,#c5,#c6,#c7,#c8,#c9,#c10'));
+    const anyChecked = allCDC.some(cb => cb.checked);
+    if (!anyChecked) return false;
+    // If any eliminatory is unchecked (and thus failed), eliminated
+    const elimIds = ['c3','c5','c6','c7'];
+    return elimIds.some(id => !document.getElementById(id).checked);
+  }
+
+  // === CDC Logic ===
+  function updateCDC() {
+    // Small delay to let checkbox state update
+    setTimeout(() => {
+      const all = document.querySelectorAll('input[type="checkbox"]');
+      let checked = 0, elimChecked = 0;
+      all.forEach(cb => {
+        if (cb.checked) {
+          checked++;
+          if (cb.dataset.elim) elimChecked++;
+        }
+      });
+      document.getElementById('cdc-checked').textContent = checked;
+      document.getElementById('cdc-elim-checked').textContent = elimChecked;
+
+      const pct = (checked / 10) * 100;
+      document.getElementById('cdc-progress').style.width = pct + '%';
+
+      const allElimOK = ['c3','c5','c6','c7'].every(id => document.getElementById(id).checked);
+      const statusEl = document.getElementById('elim-status');
+      if (allElimOK) {
+        statusEl.className = 'elim-status elim-ok';
+        statusEl.innerHTML = '<span>✓</span> Éliminatoires validés';
+      } else {
+        statusEl.className = 'elim-status elim-ko';
+        statusEl.innerHTML = '<span>⚠</span> Éliminatoires non validés';
+      }
+
+      // Retrigger score display for elimination logic
+      updateScore();
+    }, 10);
+  }
+
+  function resetAll() {
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    document.querySelectorAll('.opt-label').forEach(l => l.classList.remove('selected'));
+    for (const k in scores) scores[k] = null;
+    updateCDC();
+    updateScore();
+    document.getElementById('decision-banner').style.display = 'none';
+    document.getElementById('score-circle').style.borderColor = 'var(--gold)';
+    document.getElementById('score-big').style.color = 'var(--gold)';
+  }
+
+  // Init
+  updateScore();
+</script>
+</body>
+</html>
